@@ -80,7 +80,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     ScriptEngineProtocol *engine = ScriptingCore::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
-	ScriptingCore::getInstance()->runScript("main.js");
+	//ScriptingCore::getInstance()->runScript("main.js");
+	CCAssert(!this->mainScriptFile,"undefined mainScriptFile");
+	ScriptingCore::getInstance()->runScript(this->mainScriptFile);
 
     return true;
 }
@@ -103,4 +105,8 @@ void AppDelegate::applicationWillEnterForeground()
     director->getEventDispatcher()->dispatchCustomEvent("game_on_show");
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
+}
+void AppDelegate::setMainScriptFile(char* scriptfile){
+
+	this->mainScriptFile = scriptfile;	
 }

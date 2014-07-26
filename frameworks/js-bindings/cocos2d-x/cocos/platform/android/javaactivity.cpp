@@ -36,11 +36,12 @@ THE SOFTWARE.
 #include "platform/android/jni/JniHelper.h"
 #include <android/log.h>
 #include <jni.h>
+#include <string.h>
 
 #define  LOG_TAG    "main"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
-void cocos_android_app_init(JNIEnv* env, jobject thiz) __attribute__((weak));
+void cocos_android_app_init(JNIEnv* env, jobject thiz,char** scriptFile) __attribute__((weak));
 
 using namespace cocos2d;
 
@@ -54,7 +55,7 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved)
     return JNI_VERSION_1_4;
 }
 
-void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thiz, jint w, jint h)
+void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thiz, jint w, jint h,jstring jscriptFile)
 {
     auto director = cocos2d::Director::getInstance();
     auto glview = director->getOpenGLView();
@@ -63,8 +64,10 @@ void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, jobject thi
         glview = cocos2d::GLView::create("Android app");
         glview->setFrameSize(w, h);
         director->setOpenGLView(glview);
-
-        cocos_android_app_init(env, thiz);
+		const char* con_str = env->GetStringUTFChars(jscriptFile,0);
+		char* scriptFile = new char[strlen(con_str)+1];	
+		strcpy(scriptFile,con_str);
+        cocos_android_app_init(env, thiz, &scriptFile);
 
         cocos2d::Application::getInstance()->run();
     }

@@ -116,6 +116,8 @@ public:
      * @lua NA
      */
     virtual Platform getTargetPlatform() = 0;
+protected:
+	char* mainScriptFile;
 };
 
 // end of platform group

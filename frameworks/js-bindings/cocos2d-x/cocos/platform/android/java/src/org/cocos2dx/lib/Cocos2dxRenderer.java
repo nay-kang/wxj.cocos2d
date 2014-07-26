@@ -46,11 +46,16 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	private long mLastTickInNanoSeconds;
 	private int mScreenWidth;
 	private int mScreenHeight;
+	private String scriptFile = "main.js";
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
+	public Cocos2dxRenderer(String scriptfile){
+		super();
+		this.scriptFile = scriptfile;
+	}
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
@@ -70,7 +75,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 
 	@Override
 	public void onSurfaceCreated(final GL10 pGL10, final EGLConfig pEGLConfig) {
-		Cocos2dxRenderer.nativeInit(this.mScreenWidth, this.mScreenHeight);
+		Cocos2dxRenderer.nativeInit(this.mScreenWidth, this.mScreenHeight,this.scriptFile);
 		this.mLastTickInNanoSeconds = System.nanoTime();
 	}
 
@@ -119,7 +124,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 	private static native void nativeTouchesCancel(final int[] pIDs, final float[] pXs, final float[] pYs);
 	private static native boolean nativeKeyDown(final int pKeyCode);
 	private static native void nativeRender();
-	private static native void nativeInit(final int pWidth, final int pHeight);
+	private static native void nativeInit(final int pWidth, final int pHeight,final String scriptFile);
 	private static native void nativeOnSurfaceChanged(final int pWidth, final int pHeight);
 	private static native void nativeOnPause();
 	private static native void nativeOnResume();
