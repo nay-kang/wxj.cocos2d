@@ -29,4 +29,8 @@ package org.cocos2dx.javascript;
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 public class AppActivity extends Cocos2dxActivity {
+	public static void showAlertDialog(final String title, final String message) {
+		System.out.println("cocos2d-x:"+title);
+		System.out.println("cocos2d-x:"+message);
+	}
 }
