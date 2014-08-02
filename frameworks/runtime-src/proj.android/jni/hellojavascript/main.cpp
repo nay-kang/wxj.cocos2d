@@ -12,5 +12,5 @@ using namespace cocos2d;
 void cocos_android_app_init (JNIEnv* env, jobject thiz, char** scriptFile) {
     LOGD("cocos_android_app_init");
     AppDelegate *pAppDelegate = new AppDelegate();
-	pAppDelegate->setMainScriptFile(*scriptFile);
+	Application::getInstance()->setMainScriptFile(*scriptFile);
 }
