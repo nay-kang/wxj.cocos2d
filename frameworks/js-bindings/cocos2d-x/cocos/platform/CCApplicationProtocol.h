@@ -27,6 +27,7 @@ THE SOFTWARE.
 #define __CC_APPLICATION_PROTOCOL_H__
 
 #include "base/CCPlatformMacros.h"
+#include "string.h"
 
 NS_CC_BEGIN
 
@@ -116,6 +117,14 @@ public:
      * @lua NA
      */
     virtual Platform getTargetPlatform() = 0;
+
+	void setMainScriptFile(char* script){
+		this->mainScriptFile = script;	
+	}
+	int getMainScriptFile(char* script){
+		strcpy(script,this->mainScriptFile);
+		return strlen(this->mainScriptFile);	
+	}
 protected:
 	char* mainScriptFile;
 };

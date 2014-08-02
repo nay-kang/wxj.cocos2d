@@ -21,7 +21,6 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/CCJavascriptJavaBridge.h"
 #endif
-
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -80,10 +79,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     ScriptEngineProtocol *engine = ScriptingCore::getInstance();
 	ScriptEngineManager::getInstance()->setScriptEngine(engine);
+	char* scriptFile = new char[1024*10];
+	int path_len = Application::getInstance()->getMainScriptFile(scriptFile);
+	CCAssert(path_len,"undefined mainScriptFile");
 	//ScriptingCore::getInstance()->runScript("main.js");
-	CCAssert(!this->mainScriptFile,"undefined mainScriptFile");
-	ScriptingCore::getInstance()->runScript(this->mainScriptFile);
-
+	ScriptingCore::getInstance()->runScript(scriptFile);
     return true;
 }
 
@@ -105,8 +105,4 @@ void AppDelegate::applicationWillEnterForeground()
     director->getEventDispatcher()->dispatchCustomEvent("game_on_show");
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
-}
-void AppDelegate::setMainScriptFile(char* scriptfile){
-
-	this->mainScriptFile = scriptfile;	
 }

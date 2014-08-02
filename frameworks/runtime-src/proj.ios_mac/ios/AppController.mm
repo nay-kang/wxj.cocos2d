@@ -42,6 +42,7 @@ static AppDelegate s_sharedApplication;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+	
     // Override point for customization after application launch.
 
     // Add the view controller's view to the window and display.
@@ -77,6 +78,7 @@ static AppDelegate s_sharedApplication;
 
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
 
+	cocos2d::Application::getInstance()->setMainScriptFile("main.jss");
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLView::createWithEAGLView(eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
