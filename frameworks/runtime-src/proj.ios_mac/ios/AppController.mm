@@ -78,7 +78,7 @@ static AppDelegate s_sharedApplication;
 
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
 
-	cocos2d::Application::getInstance()->setMainScriptFile("main.jss");
+	cocos2d::Application::getInstance()->setMainScriptFile("main.js");
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLView::createWithEAGLView(eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
