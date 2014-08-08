@@ -1,1 +1,6 @@
 .DS_Store
+frameworks/js-bindings/bindings/proj.ios_mac/cocos2d_js_bindings.xcodeproj/xcuserdata/
+frameworks/js-bindings/cocos2d-x/build/cocos2d_libs.xcodeproj/xcuserdata/
+frameworks/runtime-src/proj.ios_mac/cocos-standard.xcodeproj/project.xcworkspace/
+frameworks/runtime-src/proj.ios_mac/cocos-standard.xcodeproj/xcuserdata/
+
