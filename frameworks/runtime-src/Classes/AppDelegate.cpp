@@ -21,6 +21,9 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "platform/android/CCJavascriptJavaBridge.h"
 #endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "IOS_MAC_JS_callback.h"
+#endif
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -74,6 +77,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sc->addRegisterCallback(JavascriptJavaBridge::_js_register);
+    #endif
+    
+    #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    sc->addRegisterCallback(js_register_wxj_ios_call);
     #endif
     sc->start();
     

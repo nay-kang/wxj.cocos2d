@@ -8,23 +8,12 @@
 
 #ifndef cocos_standard_IOS_MAC_JS_callback_h
 #define cocos_standard_IOS_MAC_JS_callback_h
+#include "jsapi.h"
+#include "cocos2d.h"
 
-#include "ScriptingCore.h"
-#include "AppDelegate.h"
+bool wxj_ios_callStaticMethod(JSContext *cx, uint32_t argc, jsval *vp);
 
-extern jsval jsCallerObject;
-extern AppDelegate *gAppDelegate;
-extern JSFunctionSpec js_global_functions[];
+void js_register_wxj_ios_call(JSContext *cx, JSObject *global);
 
-JSBool beServer(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool beClient(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool joinServer(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool endSession(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool disconnectFromServer(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool sendPacket(JSContext *cx, uint32_t argc, jsval *vp);
-
-void tirggerFunc(string funcToTrigger);
-void tirggerFuncWithString(string funcToTrigger, NSString *message);
-void tirggerFuncWithString(string funcToTrigger, string message);
 
 #endif

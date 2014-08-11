@@ -1252,9 +1252,16 @@ cc.game._initConfig();
 if(cc.sys.os == cc.sys.OS_ANDROID){
     jsb.reflection = new JavascriptJavaBridge();
     cc.sys.capabilities["keyboard"] = true;
+    wxj_callback = function(mName,mArgv){
+        mArgv = JSON.stringify(mArgv);
+        jsb.reflection.callStaticMethod("com/weixueji/javascript/CallbackHandler", "callback", "(Ljava/lang/String;Ljava/lang/String;)V", mName, mArgv);
+    }
 }
 else if(cc.sys.os == cc.sys.OS_IOS){
-    //TODO
+    wxj_callback = function(mName,mArgv){
+        mArgv = JSON.stringify(mArgv);
+        wxj_ios_callStaticMethod(mName,mArgv);
+    }
 }
 
 //+++++++++++++++++++++++++other initializations end+++++++++++++++++++++++++++++
